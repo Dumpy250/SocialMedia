@@ -157,7 +157,7 @@ public class Social_Media {
 	
 	public static void Jokes() {										////////// Jokes Method /////////////
 		int Counter;
-		Counter = RnG.nextInt(6);
+		Counter = RnG.nextInt(7);
 		
 		switch (Counter) {
 		case 0:
@@ -234,36 +234,52 @@ public class Social_Media {
 	System.out.println("Insert the first word of any to post to search for it.");
 	String input;
 	int i;
+	boolean found = false;
 	input = scnr.next();
-	for (i = 0; i <= numPosts; ++i) {
-		if (Posts[i].contains(input)) {
+	for (i = 0; i < numPosts; ++i) {
+		if ((Posts[i] != null) && Posts[i].contains(input)) {
 			System.out.println(Posts[i]);
 			System.out.println(PostOwner[i]);
+			found = true;
 		}
+	}
+	if (!found) {
+		System.out.println("No matching posts found.");
 	}
 }
 	
 	public static void LikePosts() {									/////////// LikePosts Method  //////////////
 		int i;
 		String input;
-		for (i = 0; i <= numPosts; ++i) {
+		if (numPosts == 0) {
+			System.out.println("There are no posts to rate.");
+			return;
+		}
+		for (i = 0; i < numPosts; ++i) {
 			System.out.println(Posts[i]);
 			System.out.println(PostOwner[i]);
 			System.out.println("Press 1 to like post, 2 to dislike");
 			input = scnr.next();
 			if (input.equals("1")) {
-				numLikes[i] = numlikes++;
+				numLikes[i]++;
+				numlikes++;
 			}
 			else if (input.equals("2")) {
-				numDislikes[i] = numDislikes[i++];
+				numDislikes[i]++;
+				numdislikes++;
 			}
 		}
 	}
 	
 	public static void TopPost() {										/////////////// TopPost Method ////////////////
 		int i;
-		for (i = 0; i <= numPosts; i++) {
+		if (numPosts == 0) {
+			System.out.println("No posts available.");
+			return;
+		}
+		for (i = 0; i < numPosts; i++) {
  			System.out.println(numLikes[i] + " Num of likes for post" + i);
+ 			System.out.println(numDislikes[i] + " Num of dislikes for post" + i);
  			System.out.println(Posts[i] + " Post: " + i);
  			System.out.println(PostOwner[i] + " PostOwner: " + i);
 		}

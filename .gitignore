@@ -1,0 +1,25 @@
+# IntelliJ / JetBrains
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# Java build output
+*.class
+*.jar
+*.war
+*.ear
+out/
+build/
+target/
+bin/
+
+# OS files
+.DS_Store
+Thumbs.db
